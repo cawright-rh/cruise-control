@@ -185,34 +185,34 @@ public class CruiseControlMetricsReporter implements MetricsReporter, Runnable {
 
     // _brokerId = Integer.parseInt((String) configs.get("broker.id"));
     Object brokerIdObj = configs.get("broker.id");
-    log.info("Raw broker.id from config: {}", brokerIdObj);
+    LOG.info("Raw broker.id from config: {}", brokerIdObj);
 
     if (brokerIdObj == null && configs.containsKey("node.id")) {
         brokerIdObj = configs.get("node.id");
-        log.info("Falling back to node.id: {}", brokerIdObj);
+        LOG.info("Falling back to node.id: {}", brokerIdObj);
     }
 
     if (brokerIdObj == null) {
-        log.error("Neither broker.id nor node.id is set in the configuration!");
+        LOG.error("Neither broker.id nor node.id is set in the configuration!");
         throw new IllegalArgumentException("broker.id or node.id must be set in the configuration.");
     }
 
     // Log the class type before casting
-    log.info("broker.id/node.id type: {}", brokerIdObj.getClass().getName());
+    LOG.info("broker.id/node.id type: {}", brokerIdObj.getClass().getName());
 
     try {
         if (brokerIdObj instanceof Integer) {
             _brokerId = (Integer) brokerIdObj;
-            log.info("Successfully set _brokerId from Integer: {}", _brokerId);
+            LOG.info("Successfully set _brokerId from Integer: {}", _brokerId);
         } else if (brokerIdObj instanceof String) {
             _brokerId = Integer.parseInt((String) brokerIdObj);
-            log.info("Successfully parsed _brokerId from String: {}", _brokerId);
+            LOG.info("Successfully parsed _brokerId from String: {}", _brokerId);
         } else {
-            log.error("Unexpected type for broker.id/node.id: {}", brokerIdObj.getClass().getName());
+            LOG.error("Unexpected type for broker.id/node.id: {}", brokerIdObj.getClass().getName());
             throw new IllegalArgumentException("Invalid broker.id/node.id type: " + brokerIdObj.getClass());
         }
     } catch (Exception e) {
-        log.error("Failed to parse broker.id/node.id: {}", brokerIdObj, e);
+        LOG.error("Failed to parse broker.id/node.id: {}", brokerIdObj, e);
         throw new RuntimeException("Error parsing broker.id/node.id", e);
     }
 
