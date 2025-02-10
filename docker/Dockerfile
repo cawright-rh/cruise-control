@@ -1,4 +1,4 @@
-FROM gradle:jdk21 AS build
+FROM docker.io/gradle:jdk21 AS build
 
 USER root
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends git ca-certificates
