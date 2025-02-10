@@ -184,7 +184,7 @@ public class CruiseControlMetricsReporter implements MetricsReporter, Runnable {
     }
 
     // _brokerId = Integer.parseInt((String) configs.get("broker.id"));
-    LOG.info("CC CONFIGS = {}", configs.toString())
+    LOG.info("CC CONFIGS = {}", configs.toString());
 
     Object brokerIdObj = configs.get("broker.id");
     LOG.info("Raw broker.id from config: {}", brokerIdObj);
