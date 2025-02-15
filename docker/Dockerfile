@@ -4,7 +4,7 @@ USER root
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends git ca-certificates
 RUN mkdir /cruise-control
 COPY . /cruise-control
-RUN cd /cruise-control && echo && ./gradlew --console=plain --no-daemon -i clean jar copyDependantLibs
+RUN cd /cruise-control && echo && ./gradlew --console=plain --no-daemon -i clean jar copyDependantLibs -x test
 
 
 RUN ls -la /cruise-control/cruise-control/build/libs/cruise-control-*.jar
